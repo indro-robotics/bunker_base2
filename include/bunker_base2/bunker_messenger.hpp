@@ -202,10 +202,10 @@ class BunkerMessenger {
     theta_ += d_theta;
     
     // Covariance
-    covar_pose_position += 0.01 * sqrt(d_x*d_x + d_y*d_y);
-    covar_pose_twist    += 0.01 * fabs(d_theta);
-    covar_twist_linear  = 0.1 * fabs(linear_speed);
-    covar_twist_angular = 0.1 * fabs(angular_speed);
+    covar_pose_position += 0.001 * std::sqrt(d_x*d_x + d_y*d_y);
+    covar_pose_twist    += 0.01 * std::fabs(d_theta);
+    covar_twist_linear  = 0.1 * std::fabs(linear_speed);
+    covar_twist_angular = 0.1 * std::fabs(angular_speed);
 
     geometry_msgs::msg::Quaternion odom_quat =
         createQuaternionMsgFromYaw(theta_);
