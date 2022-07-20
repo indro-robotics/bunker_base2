@@ -7,13 +7,13 @@
  * Copyright (c) 2022 Agilex Robot Pte. Ltd.
  */
 
-#include "bunker_base2/bunker_base_ros.hpp"
+#include "bunker_base/bunker_base_ros.hpp"
 
-#include "bunker_base2/bunker_messenger.hpp"
+#include "bunker_base/bunker_messenger.hpp"
 #include "ugv_sdk/utilities/protocol_detector.hpp"
 
 namespace westonrobot {
-BunkerRobot::BunkerRobot(std::string node_name)
+BunkerBaseRos::BunkerBaseRos(std::string node_name)
     : rclcpp::Node(node_name), keep_running_(false) {
   this->declare_parameter("port_name");   
 
@@ -28,7 +28,7 @@ BunkerRobot::BunkerRobot(std::string node_name)
   LoadParameters();
 }
 
-void BunkerRobot::LoadParameters() {
+void BunkerBaseRos::LoadParameters() {
   this->get_parameter_or<std::string>("port_name", port_name_, "can0");
 
   this->get_parameter_or<std::string>("odom_frame", odom_frame_, "odom");
@@ -55,7 +55,7 @@ void BunkerRobot::LoadParameters() {
   std::cout << "----------------------------" << std::endl;
 }
 
-bool BunkerRobot::Initialize() {
+bool BunkerBaseRos::Initialize() {
   if (is_bunker_mini_) {
     std::cout << "Robot base: Bunker Mini" << std::endl;
   } else {
@@ -86,9 +86,9 @@ bool BunkerRobot::Initialize() {
   return true;
 }
 
-void BunkerRobot::Stop() { keep_running_ = false; }
+void BunkerBaseRos::Stop() { keep_running_ = false; }
 
-void BunkerRobot::Run() {
+void BunkerBaseRos::Run() {
 
   std::unique_ptr<BunkerMessenger<BunkerRobot>> messenger =
       std::unique_ptr<BunkerMessenger<BunkerRobot>>(new BunkerMessenger<BunkerRobot>(robot_,this));
