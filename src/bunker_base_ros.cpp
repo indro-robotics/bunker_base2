@@ -13,7 +13,7 @@
 #include "ugv_sdk/utilities/protocol_detector.hpp"
 
 namespace westonrobot {
-BunkerBaseRos::BunkerBaseRos(std::string node_name)
+BunkerRobot::BunkerRobot(std::string node_name)
     : rclcpp::Node(node_name), keep_running_(false) {
   this->declare_parameter("port_name");   
 
@@ -28,7 +28,7 @@ BunkerBaseRos::BunkerBaseRos(std::string node_name)
   LoadParameters();
 }
 
-void BunkerBaseRos::LoadParameters() {
+void BunkerRobot::LoadParameters() {
   this->get_parameter_or<std::string>("port_name", port_name_, "can0");
 
   this->get_parameter_or<std::string>("odom_frame", odom_frame_, "odom");
@@ -55,7 +55,7 @@ void BunkerBaseRos::LoadParameters() {
   std::cout << "----------------------------" << std::endl;
 }
 
-bool BunkerBaseRos::Initialize() {
+bool BunkerRobot::Initialize() {
   if (is_bunker_mini_) {
     std::cout << "Robot base: Bunker Mini" << std::endl;
   } else {
@@ -86,9 +86,9 @@ bool BunkerBaseRos::Initialize() {
   return true;
 }
 
-void BunkerBaseRos::Stop() { keep_running_ = false; }
+void BunkerRobot::Stop() { keep_running_ = false; }
 
-void BunkerBaseRos::Run() {
+void BunkerRobot::Run() {
 
   std::unique_ptr<BunkerMessenger<BunkerRobot>> messenger =
       std::unique_ptr<BunkerMessenger<BunkerRobot>>(new BunkerMessenger<BunkerRobot>(robot_,this));

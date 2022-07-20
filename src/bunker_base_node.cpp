@@ -18,7 +18,7 @@
 
 using namespace westonrobot;
 
-std::shared_ptr<BunkerBaseRos> robot;
+std::shared_ptr<BunkerRobot> robot;
 
 void DetachRobot(int signal) {
   (void)signal;
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
   rclcpp::init(argc, argv);
   //   std::signal(SIGINT, DetachRobot);
 
-  robot = std::make_shared<BunkerBaseRos>("bunker");
+  robot = std::make_shared<BunkerRobot>("bunker");
   while(robot->Initialize()) {
 
     std::cout << "Robot initialized, start running ..." << std::endl;
