@@ -50,7 +50,7 @@ class BunkerMessenger {
 
     // cmd subscriber
     motion_cmd_sub_ = node_->create_subscription<geometry_msgs::msg::Twist>(
-        "/cmd_vel", 5,
+        "/mux/cmd_vel", 5,
         std::bind(&BunkerMessenger::TwistCmdCallback, this,
                   std::placeholders::_1));
     // light_cmd_sub_ = node_->create_subscription<interfaces::msg::BunkerLightCmd>(
