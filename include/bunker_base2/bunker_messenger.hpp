@@ -201,7 +201,7 @@ class BunkerMessenger {
     theta_ += d_theta;
     
     // Covariance
-    covar_pose_position += 0.01 * std::sqrt(d_x*d_x + d_y*d_y);
+    covar_pose_position += 0.1 * std::sqrt(d_x*d_x + d_y*d_y);
     covar_pose_twist    += 0.01 * std::fabs(d_theta);
     covar_twist_linear  = 0.1 * std::fabs(linear_speed);
     covar_twist_angular = 0.1 * std::fabs(angular_speed);
