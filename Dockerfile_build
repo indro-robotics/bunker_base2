@@ -1,0 +1,27 @@
+FROM ros:humble AS dev
+RUN which rosdep
+SHELL ["/bin/bash", "-c"] 
+
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y python3-pip dmidecode curl ros-humble-rmw-cyclonedds-cpp build-essential git cmake libasio-dev ros-humble-tf2-geometry-msgs
+
+WORKDIR /home/ws/src
+
+RUN git clone https://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@github.com/indro-robotics/interfaces_ros2.git && \
+    git clone https://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@github.com/indro-robotics/bunker_base2.git && \
+    git clone https://github.com/westonrobot/ugv_sdk.git
+
+WORKDIR /home/ws/
+VOLUME [ "/data" ]
+
+RUN git clone https://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@github.com/indro-robotics/ros2_autocompile.git tmp/ && \
+    mv tmp/* ./ && \
+    rm -rf tmp && \
+    pip3 install -r  requirements.txt && \
+    bash bauto.bash && \
+    rm -r backup/ && \
+    rm aes* bauto.bash README.md requirements.txt
+
+FROM scratch AS export-stage
+COPY --from=dev /home/ws /
