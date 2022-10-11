@@ -1,0 +1,16 @@
+FROM ros:humble AS dev
+RUN which rosdep
+SHELL ["/bin/bash", "-c"] 
+
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y python3-pip dmidecode curl ros-humble-rmw-cyclonedds-cpp build-essential git cmake libasio-dev ros-humble-tf2-geometry-msgs
+
+WORKDIR /home/ws/
+
+COPY out_bunker_base2/ /home/ws/
+
+COPY cyclonedds.xml /
+RUN echo "export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp" >> ~/.bashrc && echo "export CYCLONEDDS_URI=file:///cyclonedds.xml" >> ~/.bashrc
+RUN source /root/.bashrc
+CMD source /home/ws/install/setup.bash && export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp && export CYCLONEDDS_URI=file:///cyclonedds.xml && set -e && ros2 launch bunker_base2 bunker_base.launch.py
