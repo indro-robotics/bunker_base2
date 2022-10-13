@@ -152,7 +152,8 @@ class BunkerMessenger {
   double theta_ = 0.0;
 
   double covar_pose_position = 0.0;
-  double covar_pose_twist    = 0.0;
+  double covar_pose_twist    = 1.0; // Start with a bit of uncertainty in the
+                                    // twist
   double covar_twist_linear  = 0.0;
   double covar_twist_angular = 0.0;
 
