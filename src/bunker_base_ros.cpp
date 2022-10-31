@@ -119,6 +119,7 @@ void BunkerBaseRos::Run() {
   rclcpp::Rate rate(50);
   while (keep_running_) {
     messenger->PublishStateToROS();
+    messenger->PublishBatteryStatus();
     rclcpp::spin_some(shared_from_this());
     rate.sleep();
   }
