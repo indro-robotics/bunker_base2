@@ -24,6 +24,7 @@ BunkerBaseRos::BunkerBaseRos(std::string node_name)
   this->declare_parameter<bool>("is_bunker_mini", false);
   this->declare_parameter<bool>("simulated_robot", false);
   this->declare_parameter<int>("control_rate", 50);
+  this->declare_parameter<int>("battery_status", true);
 
   LoadParameters();
 }
@@ -38,6 +39,7 @@ void BunkerBaseRos::LoadParameters() {
   this->get_parameter_or<bool>("is_bunker_mini", is_bunker_mini_, false);
   this->get_parameter_or<bool>("simulated_robot", simulated_robot_, false);
   this->get_parameter_or<int>("control_rate", sim_control_rate_, 50);
+  this->get_parameter_or<bool>("battery_status", battery_status_, true);
 
   std::cout << "Loading parameters: " << std::endl;
   std::cout << "- port name: " << port_name_ << std::endl;
@@ -52,6 +54,7 @@ void BunkerBaseRos::LoadParameters() {
   std::cout << "- simulated robot: " << std::boolalpha << simulated_robot_
             << std::endl;
   std::cout << "- sim control rate: " << sim_control_rate_ << std::endl;
+  std::cout << "- battery status: " << std::boolalpha << battery_status_ << std::endl;
   std::cout << "----------------------------" << std::endl;
 }
 
@@ -119,7 +122,7 @@ void BunkerBaseRos::Run() {
   rclcpp::Rate rate(50);
   while (keep_running_) {
     messenger->PublishStateToROS();
-    messenger->PublishBatteryStatus();
+    if (battery_status_) messenger->PublishBatteryStatus();
     rclcpp::spin_some(shared_from_this());
     rate.sleep();
   }

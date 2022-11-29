@@ -27,6 +27,8 @@ def generate_launch_description():
                                                    description='Whether running with simulator')
     sim_control_rate_arg = DeclareLaunchArgument('control_rate', default_value='50',
                                                  description='Simulation control loop update rate')
+    battery_status_arg = DeclareLaunchArgument('battery_status', default_value='true',
+                                                  description='Whether to publish battery status')
     
     bunker_base_node = launch_ros.actions.Node(
         package='bunker_base2',
@@ -42,6 +44,7 @@ def generate_launch_description():
                 'is_bunker_mini': launch.substitutions.LaunchConfiguration('is_bunker_mini'),
                 'simulated_robot': launch.substitutions.LaunchConfiguration('simulated_robot'),
                 'control_rate': launch.substitutions.LaunchConfiguration('control_rate'),
+                'battery_status': launch.substitutions.LaunchConfiguration('battery_status')
         }])
 
     return LaunchDescription([
@@ -53,5 +56,6 @@ def generate_launch_description():
         is_bunker_mini_arg,
         simulated_robot_arg,
         sim_control_rate_arg,
+        battery_status_arg,
         bunker_base_node
     ])

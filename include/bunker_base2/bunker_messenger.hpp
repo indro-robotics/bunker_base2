@@ -166,6 +166,7 @@ class BunkerMessenger {
   std::string odom_topic_name_;
 
   bool simulated_robot_ = false;
+  bool battery_status_ = false;
   int sim_control_rate_ = 50;
 
   // for battery publisher
