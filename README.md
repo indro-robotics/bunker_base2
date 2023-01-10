@@ -1,5 +1,5 @@
 # Bunker Base2
-ROS2 driver for Bunker base with dynamic covariances added
+ROS2 driver for Bunker base with dynamic covariances added and battery status
 
 To build into a production environment. Run the following commander  
 ```bash

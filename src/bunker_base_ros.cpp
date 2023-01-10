@@ -24,7 +24,7 @@ BunkerBaseRos::BunkerBaseRos(std::string node_name)
   this->declare_parameter<bool>("is_bunker_mini", false);
   this->declare_parameter<bool>("simulated_robot", false);
   this->declare_parameter<int>("control_rate", 50);
-  this->declare_parameter<int>("battery_status", true);
+  this->declare_parameter<bool>("battery_status", true);
 
   LoadParameters();
 }
