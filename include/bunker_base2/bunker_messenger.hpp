@@ -57,10 +57,6 @@ class BunkerMessenger {
     // battery status publisher
     battery_status_pub_ = node_->create_publisher<sensor_msgs::msg::BatteryState>(
         "/base/battery", 10);
-    // light_cmd_sub_ = node_->create_subscription<interfaces::msg::BunkerLightCmd>(
-    //     "/light_control", 5,
-    //     std::bind(&BunkerMessenger::LightCmdCallback, this,
-    //               std::placeholders::_1));
 
     tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(node_);
   }
