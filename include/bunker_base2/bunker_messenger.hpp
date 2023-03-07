@@ -88,7 +88,6 @@ class BunkerMessenger {
         46282.892652307622 * battery_msg.voltage + 
         299832.86802959372; //created from https://arachnoid.com/polysolve/
       // Ensure percentage is between 0 and 100
-      std::cout << "Battery percentage: " << std::to_string(tmp_percentage) << std::endl;
       if (tmp_percentage < 0) {
         tmp_percentage = 0;
       } else if (tmp_percentage > 100) {
@@ -106,7 +105,6 @@ class BunkerMessenger {
         9692.6828595033203;
       // battery_msg.design_capacity = 60; // 60Ah
       // Ensure percentage is between 0 and 100
-      std::cout << "Battery percentage: " << std::to_string(tmp_percentage) << std::endl;
       if (tmp_percentage < 0) {
         tmp_percentage = 0;
       } else if (tmp_percentage > 100) {
