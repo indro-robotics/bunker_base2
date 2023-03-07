@@ -82,7 +82,7 @@ class BunkerMessenger {
     // Min battery voltage is 40V if battery voltage is above 30 V
     battery_msg.voltage = state.system_state.battery_voltage; 
     if (battery_msg.voltage < 35) {
-      float tmp_percentage = 0.0035363083052703092 * pow(battery_msg.voltage, 4) 
+      double tmp_percentage = 0.0035363083052703092 * pow(battery_msg.voltage, 4) 
         -0.60604460460754128 * pow(battery_msg.voltage, 3) +  
         37.954435576128162 * pow(battery_msg.voltage, 2) -
         1016.7870628390317 * battery_msg.voltage + 
@@ -98,11 +98,11 @@ class BunkerMessenger {
       }
       battery_msg.design_capacity = 30; // 30Ah
     } else {
-      float tmp_percentage = 0.65085267771558497 * pow(battery_msg.voltage, 4) - 
+      double tmp_percentage = 0.65085267771558497 * pow(battery_msg.voltage, 4) - 
         68.168813766265387 * pow(battery_msg.voltage, 3) + 
         2669.0893112435269 * pow(battery_msg.voltage, 2) -
         46282.892652307622 * battery_msg.voltage + 
-        299832.86802959372e+005; //created from https://arachnoid.com/polysolve/
+        299832.86802959372; //created from https://arachnoid.com/polysolve/
       // battery_msg.design_capacity = 60; // 60Ah
       // Ensure percentage is between 0 and 100
       std::cout << "Battery percentage: " << std::to_string(tmp_percentage) << std::endl;
