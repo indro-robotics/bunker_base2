@@ -87,28 +87,29 @@ class BunkerMessenger {
         3.7954435576128162e+001 * pow(battery_msg.voltage, 2) -
         1.0167870628390317e+003 * battery_msg.voltage + 
         9.6926828595033203e+003; //created from https://arachnoid.com/polysolve/
-      battery_msg.percentage = 
       // Ensure percentage is between 0 and 100
-      if (battery_msg.percentage < 0) {
-        battery_msg.percentage = 0;
-      } else if (battery_msg.percentage > 100) {
-        battery_msg.percentage = 100;
+      std::cout << "Battery percentage: " << std::to_string(tmp_percentage) << std::endl;
+      if (tmp_percentage < 0) {
+        tmp_percentage = 0;
+      } else if (tmp_percentage > 100) {
+        tmp_percentage = 100;
       } else {
         battery_msg.percentage = tmp_percentage;
       }
       battery_msg.design_capacity = 30; // 30Ah
     } else {
-      float tmp_percentage = = 6.5085267771558497e-001 * pow(battery_msg.voltage, 4) - 
+      float tmp_percentage = 6.5085267771558497e-001 * pow(battery_msg.voltage, 4) - 
         6.8168813766265387e+001 * pow(battery_msg.voltage, 3) + 
         2.6690893112435269e+003*pow(battery_msg.voltage, 2) -
         4.6282892652307622e+004 * battery_msg.voltage + 
         2.9983286802959372e+005; //created from https://arachnoid.com/polysolve/
       // battery_msg.design_capacity = 60; // 60Ah
       // Ensure percentage is between 0 and 100
-      if (battery_msg.percentage < 0) {
-        battery_msg.percentage = 0;
-      } else if (battery_msg.percentage > 100) {
-        battery_msg.percentage = 100;
+      std::cout << "Battery percentage: " << std::to_string(tmp_percentage) << std::endl;
+      if (tmp_percentage < 0) {
+        tmp_percentage = 0;
+      } else if (tmp_percentage > 100) {
+        tmp_percentage = 100;
       } else {
         battery_msg.percentage = tmp_percentage;
       }
