@@ -98,9 +98,9 @@ class BunkerMessenger {
       }
       battery_msg.design_capacity = 30; // 30Ah
     } else {
-      double tmp_percentage = 0.65085267771558497 * pow(battery_msg.voltage, 4) - 
-        68.168813766265387 * pow(battery_msg.voltage, 3) + 
-        2669.0893112435269 * pow(battery_msg.voltage, 2) -
+      double tmp_percentage = 0.65085267771558497 * double(pow(battery_msg.voltage, 4)) - 
+        68.168813766265387 * double(pow(battery_msg.voltage, 3)) + 
+        2669.0893112435269 * double(pow(battery_msg.voltage, 2)) -
         46282.892652307622 * battery_msg.voltage + 
         299832.86802959372; //created from https://arachnoid.com/polysolve/
       // battery_msg.design_capacity = 60; // 60Ah
