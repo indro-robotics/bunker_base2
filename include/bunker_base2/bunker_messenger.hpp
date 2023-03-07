@@ -82,11 +82,11 @@ class BunkerMessenger {
     // Min battery voltage is 40V if battery voltage is above 30 V
     battery_msg.voltage = state.system_state.battery_voltage; 
     if (battery_msg.voltage < 35) {
-      float tmp_percentage = 3.5363083052703092e-003 * pow(battery_msg.voltage, 4) 
-        -6.0604460460754128e-001 * pow(battery_msg.voltage, 3) +  
-        3.7954435576128162e+001 * pow(battery_msg.voltage, 2) -
-        1.0167870628390317e+003 * battery_msg.voltage + 
-        9.6926828595033203e+003; //created from https://arachnoid.com/polysolve/
+      float tmp_percentage = 0.0035363083052703092 * pow(battery_msg.voltage, 4) 
+        -0.60604460460754128 * pow(battery_msg.voltage, 3) +  
+        37.954435576128162 * pow(battery_msg.voltage, 2) -
+        1016.7870628390317 * battery_msg.voltage + 
+        9692.6828595033203; //created from https://arachnoid.com/polysolve/
       // Ensure percentage is between 0 and 100
       std::cout << "Battery percentage: " << std::to_string(tmp_percentage) << std::endl;
       if (tmp_percentage < 0) {
@@ -98,11 +98,11 @@ class BunkerMessenger {
       }
       battery_msg.design_capacity = 30; // 30Ah
     } else {
-      float tmp_percentage = 6.5085267771558497e-001 * pow(battery_msg.voltage, 4) - 
-        6.8168813766265387e+001 * pow(battery_msg.voltage, 3) + 
-        2.6690893112435269e+003*pow(battery_msg.voltage, 2) -
-        4.6282892652307622e+004 * battery_msg.voltage + 
-        2.9983286802959372e+005; //created from https://arachnoid.com/polysolve/
+      float tmp_percentage = 0.65085267771558497 * pow(battery_msg.voltage, 4) - 
+        68.168813766265387 * pow(battery_msg.voltage, 3) + 
+        2669.0893112435269 * pow(battery_msg.voltage, 2) -
+        46282.892652307622 * battery_msg.voltage + 
+        299832.86802959372e+005; //created from https://arachnoid.com/polysolve/
       // battery_msg.design_capacity = 60; // 60Ah
       // Ensure percentage is between 0 and 100
       std::cout << "Battery percentage: " << std::to_string(tmp_percentage) << std::endl;
