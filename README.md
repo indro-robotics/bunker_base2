@@ -59,7 +59,7 @@ Nvidia Jeston TX2/Xavier/XavierNX have CAN controller(s) integrated in the main 
 * Start the base node for the real robot
 
     ```
-    ros2 launch bunker_base bunker_base.launch.py
+    ros2 launch bunker_base2 bunker_base.launch.py
     ```
 * Then you can send command to the robot
     ```
